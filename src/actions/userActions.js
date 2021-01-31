@@ -13,24 +13,24 @@ export function updateUser(newUser) {
   };
 }
 
-export function getUsers(){
-  return dispatch=>{
-  axios.get('https://jsonplaceholder.typicode.com/users/1') 
-  .then(response=>response.data)
-  .then(response=>dispatch(updateUser(response.name)))
-  .catch(error=>dispatch(showError())) 
-  }
-}
-
-// export function getUsers() {
-//   return async dispatch=>{
-//     try {const result=await axios.get('https://jsonplaceholder2123.typicode.com/users/1');
-//       dispatch(updateUser(response.name));
-//     } catch (error) {
-//       dispatch(showError())
-//     }
-//   }  
+// export function getUsers(){
+//   return dispatch=>{
+//   axios.get('https://jsonplaceholder.typicode.com/users/1') 
+//   .then(response=>response.data)
+//   .then(response=>dispatch(updateUser(response.name)))
+//   .catch(error=>dispatch(showError())) 
+//   }
 // }
+
+export function getUsers() {
+  return async dispatch=>{
+    try {const result=await axios.get('https://jsonplaceholder2123.typicode.com/users/1');
+      dispatch(updateUser(result.data.name));
+    } catch (error) {
+      dispatch(showError())
+    }
+  }  
+}
 
 export function showError() {
   return {
