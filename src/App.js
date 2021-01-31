@@ -1,7 +1,7 @@
 // import logo from "./logo.svg";
 import "./App.css";
 import { connect } from "react-redux";
-import { updateUser } from "./actions/userActions";
+import { updateUser,getUsers } from "./actions/userActions";
 
 function App(props) {
   const onUpdateUser = () => {
@@ -14,6 +14,8 @@ function App(props) {
       <h1>App Component</h1>
       <h2>{props.user}</h2>
       <button onClick={onUpdateUser}>Change The Name</button>
+      <button onClick={()=>{props.onGetUsers();}}>Change The Name From API</button>
+
     </div>
   );
 }
@@ -23,6 +25,15 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   onUpdateUser: updateUser,
+  onGetUsers: getUsers,
+
 };
+
+const mergeProps=(propsFromState,mapDispatchProps,ownProps) => {
+console.log("propsFromState:", propsFromState)
+console.log("mapDispatchProps:", mapDispatchProps)
+console.log("ownProps:", ownProps)
+return {}
+}
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
